@@ -14,10 +14,10 @@ async function insecureQuery(userInput: string) {
     // Connect to the database
     await client.connect();
 
-    // Construct an insecure SQL query with user input
+    // Insecure SQL query directly embedding user input into the query string
     const query = `SELECT * FROM users WHERE username = '${userInput}'`;
 
-    // Execute the SQL query
+    // Execute the insecure SQL query
     const res = await client.query(query);
     console.log(res.rows);
 
@@ -29,6 +29,6 @@ async function insecureQuery(userInput: string) {
   }
 }
 
-// Example of user input, could come from an HTTP request or any other source
+// Example of unsafe user input that could lead to SQL injection
 const userInput = "' OR 1=1; --";
 insecureQuery(userInput);
